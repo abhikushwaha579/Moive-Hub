@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie Hub</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script> -->
+</head>
+
+<body>
+    <main class="page-shell">
+      <header class="site-header"><a class="brand" href="index.html"><span class="brand-mark">M</span> Movie Hub</a><span class="header-note">Find your next favorite</span></header>
+      <section class="hero">
+        <p class="eyebrow">YOUR PERSONAL MOVIE GUIDE</p>
+        <h1>What are you <span>watching?</span></h1>
+        <p class="intro">Search films, explore the details, and pick your next movie night.</p>
+        <form id="movieForm" class="search-form">
+            <input id="movieInput" type="search" autocomplete="off" placeholder="Search a movie title…" aria-label="Movie title">
+            <button type="submit">Search <span aria-hidden="true">→</span></button>
+        </form>
+      </section>
+      <section id="movieHub" class="movie-grid" aria-live="polite"></section>
+    </main>
+    <script src="script.js"></script>
+</body>
+
+</html>
