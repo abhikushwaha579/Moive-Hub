@@ -100,6 +100,7 @@ function displayMovies(movies, recent = false) {
     movies.forEach((movie, index) => {
         const card = document.createElement("article");
         const hasDetails = Boolean(movie.imdbID);
+        const detailsUrl = hasDetails ? `movie-details.html?id=${encodeURIComponent(movie.imdbID)}` : "";
         card.className = "movie-card";
         card.style.setProperty("--card-index", index);
 
@@ -108,11 +109,13 @@ function displayMovies(movies, recent = false) {
             : `<div class="poster-placeholder">🎬</div>`;
 
         card.innerHTML = `
-            <div class="movie-poster-wrap">${poster}</div>
+            <div class="movie-poster-wrap">${hasDetails
+                ? `<a class="movie-poster-link" href="${detailsUrl}" aria-label="View details for ${escapeHTML(movie.Title)}">${poster}</a>`
+                : poster}</div>
             <div class="movie-card-copy">
                 <div><p class="movie-title">${escapeHTML(movie.Title)}</p><p class="movie-year">${escapeHTML(movie.Year || "Year unavailable")}</p></div>
                 <p class="movie-rating">${movie.imdbRating && movie.imdbRating !== "N/A" ? `★ ${escapeHTML(movie.imdbRating)} <span>IMDb</span>` : `<span class="rating-unavailable">Rating unavailable</span>`}</p>
-                ${hasDetails ? `<a class="movie-details-button" href="movie-details.html?id=${encodeURIComponent(movie.imdbID)}">View Details <span aria-hidden="true">→</span></a>` : `<span class="movie-details-button is-disabled" aria-disabled="true">Details unavailable</span>`}
+                ${hasDetails ? `<a class="movie-details-button" href="${detailsUrl}">View Details <span aria-hidden="true">→</span></a>` : `<span class="movie-details-button is-disabled" aria-disabled="true">Details unavailable</span>`}
             </div>`;
         movieHub.append(card);
     });
